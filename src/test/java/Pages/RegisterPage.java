@@ -4,9 +4,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegisterPage extends BasePage {
+public class RegisterPage extends BasePage  {
     public RegisterPage(WebDriver driver) {
         super(driver);
     }
@@ -19,27 +20,27 @@ public class RegisterPage extends BasePage {
     @FindBy(id = "id_gender1")
     private WebElement genderButton;
     @FindBy(id = "customer_firstname")
-    private WebElement fName;
+    private WebElement firstName;
     @FindBy(id = "customer_lastname")
-    private WebElement lName;
-    @FindBy(id = "customer_passwd")
-    private WebElement pwd;
+    private WebElement lastName;
+    @FindBy(id = "passwd")
+    private WebElement password;
     @FindBy(id = "days")
-    private Select daySelect;
+    private WebElement daySelect;
     @FindBy(id = "months")
-    private Select monthSelect;
+    private WebElement monthSelect;
     @FindBy(id = "years")
-    private Select yearSelect;
+    private WebElement yearSelect;
     @FindBy(id = "firstname")
-    private WebElement fNameAdd;
+    private WebElement firstNameAddress;
     @FindBy(id = "lastname")
-    private WebElement lNameAdd;
+    private WebElement lNameAddress;
     @FindBy(id = "address1")
     private WebElement address;
     @FindBy(id = "city")
     private WebElement city;
     @FindBy(id = "id_state")
-    private Select stateSelect;
+    private WebElement stateSelect;
     @FindBy(id = "postcode")
     private WebElement postalCode;
     @FindBy(id = "phone_mobile")
@@ -50,32 +51,33 @@ public class RegisterPage extends BasePage {
     public void openMe() {
         driver.get(url);
     }
-
     public void submitRegisterForm() {
-        wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        wait.until(ExpectedConditions.visibilityOf(genderButton));
+        Select daySelectS = new Select(daySelect);
+        Select monthSelectS = new Select(monthSelect);
+        Select yearSelectS = new Select(yearSelect);
+        Select stateSelectS = new Select(stateSelect);
         genderButton.click();
-        fName.sendKeys("fName");
-        lName.sendKeys("lName");
-        pwd.sendKeys("1234567");
-        daySelect.selectByValue("1");
-        monthSelect.selectByValue("January");
-        yearSelect.selectByValue("1999");
-        fNameAdd.sendKeys("fName");
-        lNameAdd.sendKeys("lName");
+        firstName.sendKeys("fName");
+        lastName.sendKeys("lName");
+        password.sendKeys("1234567");
+        daySelectS.selectByValue("1");
+        monthSelectS.selectByValue("1");
+        yearSelectS.selectByValue("1999");
+        firstNameAddress.sendKeys("fName");
+        lNameAddress.sendKeys("lName");
         address.sendKeys("StreetName");
         city.sendKeys("CityName");
-        stateSelect.selectByIndex(5);
+        stateSelectS.selectByIndex(5);
         postalCode.sendKeys("12345");
         mobileNum.sendKeys("333444555");
         submitRegister.click();
     }
-
     public String isTitleLogged() {
         return driver.getTitle();
     }
-
     public void createNewAcc(String email) {
-        wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+        wait.until(ExpectedConditions.visibilityOf(emailField));
         emailField.sendKeys(email);
         emailSubmit.click();
     }
