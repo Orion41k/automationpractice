@@ -31,7 +31,7 @@ public class POMTests extends BaseTest {
         fakeStore.homePage().enterEmail(validExistingEmail);
         fakeStore.homePage().clickEnterKeyboard();
         //Then
-        Assertions.assertTrue(fakeStore.homePage().isAlertDisplayed());
+        Assertions.assertTrue(fakeStore.homePage().isAlertMatchesWithExpected(alertExistingEmailText));
     }
 
     @Test

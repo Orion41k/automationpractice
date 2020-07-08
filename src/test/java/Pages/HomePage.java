@@ -85,9 +85,9 @@ public class HomePage extends BasePage {
         newsletterInput.sendKeys(Keys.ENTER);
     }
 
-    public boolean isAlertDisplayed() {
+    public boolean isAlertMatchesWithExpected(String expectedText) {
         wait.until(ExpectedConditions.visibilityOf(alert));
-        return alert.isDisplayed();
+        return alert.getText().equals(expectedText);
     }
 
     public void enterText(String text) {
