@@ -10,4 +10,4 @@ Test Cases:
 5) Check system behavior when user creates an account with non-registered valid email;
 6) Check search functionality if found products matches query.
 
-Detailed test overview is located here: https://drive.google.com/file/d/1eBlvFL6uor2NlpU0ELGC0xfF1HFyWwaF/view?usp=sharing
+Detailed test overview is located here: https://drive.google.com/file/d/10Nu7i9Q7H0rvafqnqXAWRmX8kiFsFWlT/view?usp=sharing
