@@ -49,39 +49,41 @@ public class POMTests extends BaseTest {
         Assertions.assertTrue(fakeStore.resultsPage().isProductAvailable(expectedItemTitle, expectedItemPrice));
     }
 
-//    //CASE #4
-//    @Test
-//    @DisplayName("Check remove functionality from drop-down cart on Home Page")
-//    void WhenUserRemovesItemFromCartThenShouldBeRemoved() {
-//        //Given
-//        String itemName = "Printed Chiffon Dress";
-//        String totalPrice = "$18.40";
-//        //When
-//        fakeStore.homePage().openMe();
-//        fakeStore.homePage().addToCart();
-//        fakeStore.homePage().removeFromCart();
-//        //Then
-//        Assertions.assertTrue(fakeStore.homePage().isItemInCart(itemName));
-//        Assertions.assertTrue(fakeStore.homePage().getCartTotalPrice().equals(totalPrice));
-//    }
+    //CASE #4
+    @Test
+    @DisplayName("Check remove functionality from drop-down cart on Home Page")
+    void WhenUserRemovesItemFromCartThenItemShouldBeRemoved() {
+        //Given
+        String itemName = "Printed Chiffon Dress";
+        String totalPrice = "$18.40";
+        String expectedResult = "true";
+        //When
+        fakeStore.homePage().openMe();
+        fakeStore.homePage().addToCart();
+        fakeStore.homePage().removeFromCart();
+        //Then
+        Assertions.assertTrue(fakeStore.homePage().isCartPriceMatches(totalPrice));
+        Assertions.assertTrue(fakeStore.homePage().isCartHasOneProduct());
+
+    }
 
     @Test
     @DisplayName("Check system behavior when user creates an account with non-registered valid email")
     void WhenUserCreateNewAccountThenAccountShouldBeCreated() {
         //Given
-        String newEmail = "new@ema.il1222";
+        double suffix = Math.random();
+        String newEmail = "new@ema.il"+suffix;
         String expectedTitle = "My account - My Store";
         //When
         fakeStore.registerPage().openMe();
         fakeStore.registerPage().createNewAcc(newEmail);
         fakeStore.registerPage().submitRegisterForm();
         //Then
-        Assertions.assertTrue(fakeStore.registerPage().isTitleLogged().equals(expectedTitle));
-//        Assertions.assertTrue(fakeStore.registerPage().isLoggedIn());
+        Assertions.assertEquals(expectedTitle, fakeStore.registerPage().isTitleLogged());
     }
 
     @Test
-    @DisplayName("Check search functionality if found products matches query")
+    @DisplayName("Check search functionality if found products match query")
     void WhenUserSearchesThenFoundProductMatchesQuery() {
         //Given
         String searchText = "dress";
