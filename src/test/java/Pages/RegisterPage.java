@@ -50,26 +50,26 @@ public class RegisterPage extends BasePage  {
     public void openMe() {
         driver.get(url);
     }
-    public void submitRegisterForm() {
+    public void submitRegisterForm(String inputFirstname, String inputLastname, String inputPassword, String inputDayOfBirth, String inputMonthOfBirth, String inputYearOfBirth, String inputAddress, String inputCity, String inputPostalCode, String inputMobileNumber) {
         wait.until(ExpectedConditions.visibilityOf(genderButton));
         Select daySelectS = new Select(daySelect);
         Select monthSelectS = new Select(monthSelect);
         Select yearSelectS = new Select(yearSelect);
         Select stateSelectS = new Select(stateSelect);
         genderButton.click();
-        firstName.sendKeys("fName");
-        lastName.sendKeys("lName");
-        password.sendKeys("1234567");
-        daySelectS.selectByValue("1");
-        monthSelectS.selectByValue("1");
-        yearSelectS.selectByValue("1999");
-        firstNameAddress.sendKeys("fName");
-        lNameAddress.sendKeys("lName");
-        address.sendKeys("StreetName");
-        city.sendKeys("CityName");
+        firstName.sendKeys(inputFirstname);
+        lastName.sendKeys(inputLastname);
+        password.sendKeys(inputPassword);
+        daySelectS.selectByValue(inputDayOfBirth);
+        monthSelectS.selectByValue(inputMonthOfBirth);
+        yearSelectS.selectByValue(inputYearOfBirth);
+        firstNameAddress.sendKeys(inputFirstname);
+        lNameAddress.sendKeys(inputLastname);
+        address.sendKeys(inputAddress);
+        city.sendKeys(inputCity);
         stateSelectS.selectByIndex(5);
-        postalCode.sendKeys("12345");
-        mobileNum.sendKeys("333444555");
+        postalCode.sendKeys(inputPostalCode);
+        mobileNum.sendKeys(inputMobileNumber);
         submitRegister.click();
     }
     public String isTitleLogged() {

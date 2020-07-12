@@ -24,7 +24,7 @@ public class POMTests extends BaseTest {
     @DisplayName("Check newsletter subscription with registered email via “Enter” key")
     void WhenUserSubscribesWithExistingEmailThenAlertShouldBeDisplayed() {
         //Given
-        String validExistingEmail = "asdasd@asd.asd";
+        String validExistingEmail = "asd@asd.com";
         String alertExistingEmailText = "Newsletter : This email address is already registered.";
         //When
         fakeStore.homePage().openMe();
@@ -49,14 +49,11 @@ public class POMTests extends BaseTest {
         Assertions.assertTrue(fakeStore.resultsPage().isProductAvailable(expectedItemTitle, expectedItemPrice));
     }
 
-    //CASE #4
     @Test
     @DisplayName("Check remove functionality from drop-down cart on Home Page")
     void WhenUserRemovesItemFromCartThenItemShouldBeRemoved() {
         //Given
-        String itemName = "Printed Chiffon Dress";
         String totalPrice = "$18.40";
-        String expectedResult = "true";
         //When
         fakeStore.homePage().openMe();
         fakeStore.homePage().addToCart();
@@ -74,10 +71,20 @@ public class POMTests extends BaseTest {
         double suffix = Math.random();
         String newEmail = "new@ema.il"+suffix;
         String expectedTitle = "My account - My Store";
+        String inputFirstName = "fName";
+        String inputLastName = "lName";
+        String inputPassword = "1234567";
+        String inputDayOfBirth = "1";
+        String inputMonthOfBirth = "1";
+        String inputYearOfBirth = "1999";
+        String inputAddress = "StreetName";
+        String inputCity = "CityName";
+        String inputPostalCode = "12345";
+        String inputMobileNumber = "333444555";
         //When
         fakeStore.registerPage().openMe();
         fakeStore.registerPage().createNewAcc(newEmail);
-        fakeStore.registerPage().submitRegisterForm();
+        fakeStore.registerPage().submitRegisterForm(inputFirstName, inputLastName, inputPassword, inputDayOfBirth, inputMonthOfBirth, inputYearOfBirth, inputAddress, inputCity, inputPostalCode, inputMobileNumber);
         //Then
         Assertions.assertEquals(expectedTitle, fakeStore.registerPage().isTitleLogged());
     }
